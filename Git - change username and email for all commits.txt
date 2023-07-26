@@ -1,0 +1,52 @@
+================================================
+- copy git code url and open cmd in local git directory
+- git clone 'paste git code url'
+- open cmd in newly created git project
+- git remote -v
+- git remote remove origin
+- crate new repository and copy new git url
+- git remote add origin 'paste new git url'
+- git push --set-upstream origin master
+- git checkout -b 'new branch name'
+- git push --set-upstream origin 'new branch name'
+================================================
+
+
+git filter-branch -f --env-filter "
+    GIT_AUTHOR_NAME='LionelPerrault'
+    GIT_AUTHOR_EMAIL='LionelPerrault0616@gmail.com'
+    GIT_COMMITTER_NAME='LionelPerrault'
+    GIT_COMMITTER_EMAIL='LionelPerrault0616@gmail.com'
+  " HEAD
+
+---------------------------------------------------
+git remote remove origin
+---------------------------------------------------
+
+git filter-branch --env-filter '
+WRONG_EMAIL="shakilkhan621@gmail.com"
+NEW_NAME="geektalent"
+NEW_EMAIL="geektalent1010@gmail.com"
+
+if [ "$GIT_COMMITTER_EMAIL" = "$WRONG_EMAIL" ]
+then
+    export GIT_COMMITTER_NAME="$NEW_NAME"
+    export GIT_COMMITTER_EMAIL="$NEW_EMAIL"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$WRONG_EMAIL" ]
+then
+    export GIT_AUTHOR_NAME="$NEW_NAME"
+    export GIT_AUTHOR_EMAIL="$NEW_EMAIL"
+fi
+' --tag-name-filter cat -- --branches --tags
+=================================
+
+git branch
+git checkout 'branch_name'
+git push origin 'branch_name'
+=================================
+
+djini
+trellar
+
+2108 South Queen Street, York, PA 17403
